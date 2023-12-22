@@ -15,7 +15,9 @@ public class Language {
         searchButton.click();
         driver.manage().window().maximize();
 
-        driver.findElement(By.xpath("//span[@data-testid='store-switcher'")).click();
+        WebElement languageButton = driver.findElement(By.xpath("//span[@data-testid='store-switcher']"));
+        languageButton.click();
+
 
 
 
