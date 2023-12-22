@@ -30,12 +30,11 @@ public class Loggout {
         driver.findElement(By.name("login[password]")).sendKeys("123456");
         driver.findElement(By.xpath("//*[@data-selen='login-submit']")).click();
 
-       WebElement contLogout = driver.findElement(By.xpath("//button[@data-testid='account-info-logged-true']"));
-       Actions actionLogout = new Actions(driver);
-       actionLogout.moveToElement(contLogout).perform();
 
+        WebElement dropdownButton = driver.findElement(By.xpath("//button[@data-testid='account-info-logged-true']"));
+        dropdownButton.click();
 
-       WebElement hoverLogout = driver.findElement(
+        WebElement hoverLogout = driver.findElement(
                 By.xpath("//a[@data-testid='logout']"));
         actionCont.click(hoverLogout).perform();
     }

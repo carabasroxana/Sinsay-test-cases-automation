@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class NewEntryAdded {
     public static void main(String[] args) {
@@ -27,7 +29,12 @@ public class NewEntryAdded {
         WebElement size = driver.findElement(By.xpath("//li[text()='XS']"));
         size.click();
 
-       WebElement section = driver.findElement(By.cssSelector("section[data-selen='add-to-cart']"));
+
+
+
+
+
+        WebElement section = driver.findElement(By.cssSelector("section[data-selen='add-to-cart']"));
        WebElement addToCartButton = section.findElement(By.cssSelector("button[data-selen='add-to-cart-button']"));
        addToCartButton.click();
     }
