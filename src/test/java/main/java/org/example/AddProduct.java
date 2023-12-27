@@ -15,16 +15,18 @@ public class AddProduct {
 
         WebElement searchButton = driver.findElement(By.id("cookiebotDialogOkButton"));
         searchButton.click();
+
         WebElement mainList = driver.findElement(
                 By.xpath("//ul[@data-testid = 'category-list']/li[@data-testid='category-link']/a[text()='Femei']"));
 
         Actions action = new Actions(driver);
         action.moveToElement(mainList).perform();
-        WebElement hoverList = driver.findElement(
-            By.xpath("//li[@data-testid='subcategory-link']/a[text()='Rochii']"));
-        action.click(hoverList).perform();
+
+        driver.findElement(
+                By.xpath("//*[@id='navigation-wrapper']/div/ul/li[3]/ul/li[1]/ul/li[8]/a[text()='Rochii']")).click();
 
         driver.findElement(By.linkText("Rochie mini cu șnur decorativ")).click();
+        driver.findElement(By.xpath("//html/body/div[8]/div/button/span")).click();
         WebElement size = driver.findElement(By.xpath("//li[text()='XS']"));
         size.click();
 
