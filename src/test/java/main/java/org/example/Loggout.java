@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 
+import java.time.Duration;
+
 public class Loggout {
     public static void main(String[] args) {
         System.setProperty("webdriver.chrome.driver", "W:\\Automation testing\\chromedriver-win64\\chromedriver.exe");
@@ -30,12 +32,17 @@ public class Loggout {
         driver.findElement(By.name("login[password]")).sendKeys("123456");
         driver.findElement(By.xpath("//*[@data-selen='login-submit']")).click();
 
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        WebElement dropdownButton = driver.findElement(By.xpath("//button[@data-testid='account-info-logged-true']"));
-        dropdownButton.click();
+        WebElement contTrue = driver.findElement(By.xpath("//button[@data-testid='account-info-logged-true']"));
 
-        WebElement hoverLogout = driver.findElement(
-                By.xpath("//a[@data-testid='logout']"));
-        actionCont.click(hoverLogout).perform();
+        Actions actionContTrue = new Actions(driver);
+        actionContTrue.moveToElement(contTrue).perform();
+
+        WebElement hoverLoggout = driver.findElement(By.xpath("//*[@id=\"headerWrapper\"]/div/div[3]/button[1]"));
+        actionContTrue.click(hoverLoggout).perform();
+
+        driver.findElement(By.xpath("//*[@id=\"customerAccount\"]/div/div[1]/ul/li/ul/li[6]/a")).click();
+
     }
 }

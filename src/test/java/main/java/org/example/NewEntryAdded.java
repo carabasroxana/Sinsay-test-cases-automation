@@ -29,7 +29,7 @@ public class NewEntryAdded {
         driver.findElement(
                 By.xpath("//*[@id='navigation-wrapper']/div/ul/li[3]/ul/li[1]/ul/li[8]/a[text()='Rochii']")).click();
 
-        driver.findElement(By.linkText("Rochie mini cu șnur decorativ")).click();
+        driver.findElement(By.linkText("Rochie mini")).click();
         driver.findElement(By.xpath("//html/body/div[8]/div/button/span")).click();
 
         WebElement sizeXS = driver.findElement(By.xpath("//li[text()='XS']"));
@@ -44,11 +44,11 @@ public class NewEntryAdded {
         driver.findElement(
                 By.cssSelector("button[data-selen='cart-confirmation-close']")).click();
 
-
-        WebElement sizeS = driver.findElement(By.xpath("//*[@id='productContainer']/section/div[2]/section[4]/div/ul/li[3]"));
+        WebElement sizeS = driver.findElement(By.xpath("//li[text()='S']"));
         sizeS.click();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         addToCartButton.click();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.findElement(By.cssSelector("a[data-selen='cart-confirmation-go-to-checkout']")).click();
 
     }
 }

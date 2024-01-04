@@ -27,6 +27,6 @@ public class ForgotPassword {
         driver.findElement(By.xpath("//button[@data-selen='forgot-password']")).click();
         driver.findElement(By.id("email_id")).click();
         driver.findElement(By.id("email_id")).sendKeys("t760389@gmail.com");
-        driver.findElement(By.linkText("Trimis")).click();
+        driver.findElement(By.xpath("/html/body/div[9]/div/div[2]/form/button")).click();
     }
 }

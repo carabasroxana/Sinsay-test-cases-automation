@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 
+import java.time.Duration;
+
 public class AddProduct {
     public static void main(String[] args) {
         System.setProperty("webdriver.chrome.driver", "W:\\Automation testing\\chromedriver-win64\\chromedriver.exe");
@@ -27,11 +29,17 @@ public class AddProduct {
 
         driver.findElement(By.linkText("Rochie mini cu șnur decorativ")).click();
         driver.findElement(By.xpath("//html/body/div[8]/div/button/span")).click();
-        WebElement size = driver.findElement(By.xpath("//li[text()='XS']"));
-        size.click();
 
-       WebElement section = driver.findElement(By.cssSelector("section[data-selen='add-to-cart']"));
-       WebElement addToCartButton = section.findElement(By.cssSelector("button[data-selen='add-to-cart-button']"));
-       addToCartButton.click();
+        WebElement sizeXS = driver.findElement(By.xpath("//li[text()='XS']"));
+        sizeXS.click();
+
+        WebElement section = driver.findElement(By.cssSelector("section[data-selen='add-to-cart']"));
+        WebElement addToCartButton = section.findElement(By.cssSelector("button[data-selen='add-to-cart-button']"));
+        addToCartButton.click();
+
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+        driver.findElement(
+                By.cssSelector("button[data-selen='cart-confirmation-close']")).click();
     }
 }

@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 
+import java.time.Duration;
+
 
 public class OrdersView {
     public static void main(String[] args) {
@@ -30,13 +32,16 @@ public class OrdersView {
         driver.findElement(By.name("login[password]")).sendKeys("123456");
         driver.findElement(By.xpath("//*[@data-selen='login-submit']")).click();
 
-        WebElement personName = driver.findElement(By.xpath("//button[@data-testid='account-info-logged-true']"));
-        Actions actionPersonName = new Actions(driver);
-        actionPersonName.moveToElement(personName).perform();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        WebElement hoverPersonName = driver.findElement(
-                By.xpath("//a[@data-testid='order-history]"));
-        actionCont.click(hoverPersonName).perform();
+        WebElement contTrue = driver.findElement(By.xpath("//button[@data-testid='account-info-logged-true']"));
+
+        Actions actionContTrue = new Actions(driver);
+        actionContTrue.moveToElement(contTrue).perform();
+
+        WebElement hoverContTrue = driver.findElement(By.xpath("//*[@id=\"headerWrapper\"]/div/div[3]/button[1]"));
+        actionContTrue.click(hoverContTrue).perform();
+
 
 
 

@@ -15,19 +15,22 @@ public class FilterBySize {
 
         WebElement searchButton = driver.findElement(By.id("cookiebotDialogOkButton"));
         searchButton.click();
+
         WebElement mainList = driver.findElement(
                 By.xpath("//ul[@data-testid = 'category-list']/li[@data-testid='category-link']/a[text()='Femei']"));
 
         Actions action = new Actions(driver);
         action.moveToElement(mainList).perform();
-        WebElement hoverList = driver.findElement(
-            By.xpath("//li[@data-testid='subcategory-link']/a[text()='Rochii']"));
-        action.click(hoverList).perform();
 
-        WebElement label = driver.findElement(By.xpath("//label[contains(text(),'Marimi')]"));
+        driver.findElement(
+                By.xpath("//*[@id='navigation-wrapper']/div/ul/li[3]/ul/li[1]/ul/li[8]/a[text()='Rochii']")).click();
+
+        WebElement label = driver.findElement(By.xpath("//*[@id=\"categoryFilters\"]/form/div/div[2]/label"));
         label.click();
 
-        WebElement checkbox = driver.findElement(By.id("sizes-xl"));
+        WebElement checkbox = driver.findElement(By.xpath("//*[@id=\"sizes-xl\"]"));
         checkbox.click();
+
+        driver.findElement(By.xpath("//*[@id=\"categoryFilters\"]/form/div/div[2]/ul/div/button")).click();
     }
 }

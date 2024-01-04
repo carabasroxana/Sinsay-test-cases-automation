@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 
+import java.time.Duration;
+
 public class AccountChanges {
     public static void main(String[] args) {
         System.setProperty("webdriver.chrome.driver", "W:\\Automation testing\\chromedriver-win64\\chromedriver.exe");
@@ -30,12 +32,24 @@ public class AccountChanges {
         driver.findElement(By.name("login[password]")).sendKeys("123456");
         driver.findElement(By.xpath("//*[@data-selen='login-submit']")).click();
 
-        WebElement hoverLogged = driver.findElement(
-                By.xpath("//button[@data-testid='account-info-logged-true']"));
-        Actions actionHoverComenzi = new Actions(driver);
-        actionHoverComenzi.click(hoverLogged).perform();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        driver.findElement(By.xpath("//*[@data-testid='account']")).click();
+        WebElement contTrue = driver.findElement(By.xpath("//button[@data-testid='account-info-logged-true']"));
+
+        Actions actionContTrue = new Actions(driver);
+        actionContTrue.moveToElement(contTrue).perform();
+
+        WebElement hoverContTrue = driver.findElement(By.xpath("//*[@id=\"headerWrapper\"]/div/div[3]/button[1]"));
+        actionContTrue.click(hoverContTrue).perform();
+
+        driver.findElement(By.xpath("//*[@id=\"customerAccount\"]/div/div[1]/ul/li/ul/li[3]/a")).click();
+        WebElement contUpdate = driver.findElement(By.xpath("//*[@id=\"customer-data-form\"]/fieldset[1]/div[1]/div/input"));
+        contUpdate.click();
+        contUpdate.clear();
+        contUpdate.sendKeys("a@a.ri");
+
+        driver.findElement(By.xpath("//*[@id=\"customer-data-form\"]/div/button")).click();
+
 
     }
 }

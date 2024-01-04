@@ -8,6 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 public class UpdatedQuantity {
@@ -16,38 +17,37 @@ public class UpdatedQuantity {
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.sinsay.com/ro/ro/");
         driver.manage().window().maximize();
+
         WebElement searchButton = driver.findElement(By.id("cookiebotDialogOkButton"));
         searchButton.click();
+
         WebElement mainList = driver.findElement(
                 By.xpath("//ul[@data-testid = 'category-list']/li[@data-testid='category-link']/a[text()='Femei']"));
 
         Actions action = new Actions(driver);
         action.moveToElement(mainList).perform();
-        WebElement hoverList = driver.findElement(
-            By.xpath("//li[@data-testid='subcategory-link']/a[text()='Rochii']"));
-        action.click(hoverList).perform();
 
-       driver.findElement(By.linkText("Rochie mini cu guler înalt")).click();
-//
-//        List<WebElement> allElements = driver.findElements(By.id("categoryProducts"));
-//        if (!allElements.isEmpty()){
-//            allElements.get(0).click();
-//        }
+        driver.findElement(
+                By.xpath("//*[@id='navigation-wrapper']/div/ul/li[3]/ul/li[1]/ul/li[8]/a[text()='Rochii']")).click();
 
-        WebElement size = driver.findElement(By.xpath("//li[text()='XS']"));
-        size.click();
+        driver.findElement(By.linkText("Rochie mini")).click();
+        driver.findElement(By.xpath("//html/body/div[8]/div/button/span")).click();
 
-       WebElement section = driver.findElement(By.cssSelector("section[data-selen='add-to-cart']"));
-       WebElement addToCartButton = section.findElement(By.cssSelector("button[data-selen='add-to-cart-button']"));
-       addToCartButton.click();
+        WebElement sizeXS = driver.findElement(By.xpath("//li[text()='XS']"));
+        sizeXS.click();
 
-//       driver.findElement(By.cssSelector("button[data-selen='cart-confirmation-continue-shopping']")).click();
-        WebElement modalContainer = driver.findElement(By.className("modal-dialog add-to-cart-modal"));
-        WebElement modalContentBody = modalContainer.findElement(By.className("modal-content"));
-        WebElement modalAcceptButton = modalContainer.findElement(
-                By.cssSelector("button[data-selen='cart-confirmation-continue-shopping'"));
-        modalAcceptButton.click();
+        WebElement section = driver.findElement(By.cssSelector("section[data-selen='add-to-cart']"));
+        WebElement addToCartButton = section.findElement(By.cssSelector("button[data-selen='add-to-cart-button']"));
+        addToCartButton.click();
 
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+        driver.findElement(
+                By.cssSelector("button[data-selen='cart-confirmation-close']")).click();
+
+        addToCartButton.click();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.findElement(By.cssSelector("a[data-selen='cart-confirmation-go-to-checkout']")).click();
 
 
     }
